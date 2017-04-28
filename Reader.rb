@@ -19,7 +19,7 @@ class Exec1
 			  		
 			  		puts line
 
-			  		if !(line.include? "[INFO]" or line.include? "[WARNING]")
+			  		if (line.include? "<<< ERROR!")
 
 			  			if isFirst==0
 			  				file3 = File.open("#{file}_new","a+")
@@ -48,33 +48,6 @@ class Exec1
 
 end
 
-class Exec2
-
-	def start
-
-		Dir.new('.').each {|file|
-
-			if file!="Reader.rb"
-			
-				next if File.directory? file
-
-				if file.include? "new"
-					newName = file.chomp("_new")
-					File.rename(file, newName)
-				else
-					File.delete(file)
-				end
-
-			end
-			
-		}
-
-	end
-
-end
-
 ex1 = Exec1.new
-ex2 = Exec2.new
 
 ex1.start
-#ex2.start
